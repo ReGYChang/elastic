@@ -1,10 +1,9 @@
-package elasticsearch
+package elastic
 
 import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"nexdata/pkg/config"
 	"strconv"
 	"strings"
 	"sync"
@@ -17,7 +16,7 @@ import (
 func TestGetClient(t *testing.T) {
 	// 1. Set up testing configuration
 	//
-	config.Elasticsearch.Hosts = []string{"http://10.1.5.14:9200"}
+	addresses = []string{"http://10.1.5.14:9200"}
 	// testing index
 	testedIndex := "test-2022.07.14"
 
@@ -113,7 +112,7 @@ func TestGetClient(t *testing.T) {
 	}
 	if err := json.NewEncoder(&buf).Encode(query); err != nil {
 		t.Errorf("Error encoding query: %s", err)
-	}	
+	}
 
 	// Perform the search request.
 	res, err = es.Search(

@@ -1,4 +1,4 @@
-package elasticsearch
+package elastic
 
 // UpdateResponse is the result of updating a document in Elasticsearch.
 type UpdateResponse struct {

@@ -1,4 +1,4 @@
-package elasticsearch
+package elastic
 
 // DeleteResponse is the outcome of running DeleteService.Do.
 type DeleteResponse struct {

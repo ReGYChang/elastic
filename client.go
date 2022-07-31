@@ -1,10 +1,9 @@
-package elasticsearch
+package elastic
 
 import (
 	"context"
 	"encoding/json"
 	"errors"
-	"nexdata/pkg/config"
 	"sync"
 
 	es "github.com/elastic/go-elasticsearch/v8"
@@ -19,6 +18,11 @@ var (
 
 	// Used to execute client creation procedure only once.
 	once sync.Once
+
+	// Config for Elasticsearch client
+	addresses []string
+	username  string
+	password  string
 )
 
 func GetClient() (*es.Client, error) {
@@ -26,9 +30,9 @@ func GetClient() (*es.Client, error) {
 
 	once.Do(func() {
 		cfg := es.Config{
-			Addresses: config.Elasticsearch.Hosts,
-			Username:  config.Elasticsearch.Username,
-			Password:  config.Elasticsearch.Password,
+			Addresses: addresses,
+			Username:  username,
+			Password:  password,
 		}
 		client, err = es.NewClient(cfg)
 		if err != nil {

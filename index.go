@@ -1,4 +1,4 @@
-package elasticsearch
+package elastic
 
 // IndexResponse is the result of indexing a document in Elasticsearch.
 type IndexResponse struct {
